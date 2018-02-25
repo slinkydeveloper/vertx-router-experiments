@@ -20,7 +20,7 @@ public class ${val.routerType}Benchmark {
             compatiblePaths = stuff.getCompatiblePaths();
             probabilitiesForRandom = stuff.getProbabilitiesForRandom();
 
-            router = ${val.routerType}.initializeBench();
+            router = new ${val.routerType}().initializeForBench();
         }
 
         @Setup(Level.Invocation)
