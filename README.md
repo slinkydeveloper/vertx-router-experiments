@@ -40,7 +40,7 @@ The method Router.initializeForBench() should initialize the router for this rou
 /pages/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})/feed/(?<postid>[a-zA-Z][a-zA-Z0-9]{3,20})
 ```
 
-The routes params can be only alphanumeric of size from 3 to 20 chars
+The routes params can be only alphanumeric of size from 3 to 20 chars, and they don't finish with `/`
 
 Note that implementing `addRoute(String)` and `addRoute(Pattern)` the default implementation of `Router.initializeForBench()` will automatically fill the `Router`
 

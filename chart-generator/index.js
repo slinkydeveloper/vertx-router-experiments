@@ -3,10 +3,9 @@ const ChartjsNode = require('chartjs-node');
 const _ = require('lodash');
 const fs = require('fs');
 
-let complex_data = JSON.parse(fs.readFileSync('./complex.json', 'utf8'));
 let social_data = JSON.parse(fs.readFileSync('./social.json', 'utf8'));
-let complex_tests = ["/users/newUser", "/users/removeUser", "/users/newFacebookUser", "/users/superUser", "/products/buy/productA", "/health", "/cart/cartA/remove", "/cart/cartB/modify"];
-let social_tests = ["/feed", "/users/popular", "/users/user1", "/users/user1/events", "/users/user1/likes", "/users/user1/pages", "/users/user1/friends", "/users/user1/feed", "/posts/popular", "/posts/post1", "/posts/post1/tagged", "/posts/post1/photos", "/posts/post1/photos/photo1", "/events/popular", "/events/event1", "/events/event1/partecipants", "/events/event1/invited", "/events/event1/feed", "/pages/popular", "/pages/page1", "/pages/page1/likes", "/pages/page1/events", "/pages/page1/feed", "/pages/page1/feed/post1"];
+let social_tests = JSON.parse(fs.readFileSync('../src/main/resources/paths.json', 'utf8'));
+social_tests = social_tests.paths;
 
 function runRegex(regexp, s) {
     let a = regexp.exec(s);

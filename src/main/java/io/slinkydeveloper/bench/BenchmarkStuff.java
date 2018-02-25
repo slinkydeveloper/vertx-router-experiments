@@ -2,6 +2,7 @@ package io.slinkydeveloper.bench;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class BenchmarkStuff {
 
     public BenchmarkStuff() {
         try {
-            JsonNode node = new ObjectMapper().readTree(new File(BenchmarkStuff.class.getResource("paths.json").toURI()));
+            JsonNode node = new ObjectMapper().readTree(new File("src/main/resources/paths.json"));
             compatiblePaths = StreamSupport.stream(node.get("paths").spliterator(), false)
                     .map(JsonNode::asText)
                     .collect(Collectors.toList());

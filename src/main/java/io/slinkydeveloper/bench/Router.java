@@ -8,26 +8,21 @@ import java.util.regex.Pattern;
  */
 public interface Router {
 
-    /**
-     * The return value is empty if no route matches or contains the last Route matching
-     * @param route
-     * @return
-     */
-    Optional<Route> route(String route);
+    boolean route(String route);
 
     /**
      * This method should manage only regex routes
      * @param p
      */
-    void addRoute(Pattern p);
+    default void addRoute(Pattern p) {}
 
     /**
      * This method should manage constant and parametrized routes
      * @param s
      */
-    void addRoute(String s);
+    default void addRoute(String s) {}
 
-    default void initializeForBench() {
+    default Router initializeForBench() {
         addRoute("/feed");
         addRoute("/users/popular");
         addRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})"));
@@ -54,6 +49,8 @@ public interface Router {
         addRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/events"));
         addRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/feed"));
         addRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/feed\\/(?<postid>[a-zA-Z][a-zA-Z0-9]{3,20})"));
+
+        return this;
     }
 
 }

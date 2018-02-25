@@ -9,7 +9,4 @@ public interface Route {
     boolean isConstantRoute();
     boolean isParametrizedRoute();
 
-    String getPath();
-    String getPattern();
-
 }

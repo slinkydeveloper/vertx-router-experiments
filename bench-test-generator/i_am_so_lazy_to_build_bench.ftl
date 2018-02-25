@@ -32,7 +32,7 @@ public class ${val.routerType}Benchmark {
             );
         }
 
-        public ${val.routerType} router;
+        public Router router;
         String randomPath;
         List<String> compatiblePaths;
         List<Integer> probabilitiesForRandom;

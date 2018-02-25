@@ -7,8 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processor name="io.slinkydeveloper.bench.annotations.RouterBenchmarkImpl" />
-        <module name="vertx-router-experiments" />
         <module name="vertx-routing-experiments-annotations" />
+      </profile>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="vertx-router-experiments" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
