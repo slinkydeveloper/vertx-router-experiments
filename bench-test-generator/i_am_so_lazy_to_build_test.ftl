@@ -3,7 +3,7 @@ package io.slinkydeveloper.bench;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Francesco Guardiani @slinkydeveloper
@@ -19,5 +19,10 @@ public class ${val.routerType}Test {
     }
 
 </#list>
+
+    @Test
+    public void testNotFound1() {
+        assertFalse(router.route("/posts/post1"));
+    }
 
 }

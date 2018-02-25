@@ -13,13 +13,13 @@ public class ECRegexNode extends ECBaseNode {
 
     Pattern pattern;
 
-    public ECRegexNode(Pattern pattern) {
-        super();
+    public ECRegexNode(Pattern pattern, boolean canStopHere) {
+        super(canStopHere);
         this.pattern = pattern;
     }
 
-    public ECRegexNode(String pattern) {
-        super();
+    public ECRegexNode(String pattern, boolean canStopHere) {
+        super(canStopHere);
         this.pattern = Pattern.compile(pattern);
     }
 

@@ -31,7 +31,7 @@ public class ECTreeRouterBenchmark {
             );
         }
 
-        public ECTreeRouter router;
+        public Router router;
         String randomPath;
         List<String> compatiblePaths;
         List<Integer> probabilitiesForRandom;
@@ -143,165 +143,154 @@ public class ECTreeRouterBenchmark {
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route10ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/posts/post1"));
+        bh.consume(routerState.router.route("/posts/post1/tagged"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route10ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/posts/post1"));
+        bh.consume(routerState.router.route("/posts/post1/tagged"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route11ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/posts/post1/tagged"));
+        bh.consume(routerState.router.route("/posts/post1/photos"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route11ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/posts/post1/tagged"));
+        bh.consume(routerState.router.route("/posts/post1/photos"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route12ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/posts/post1/photos"));
+        bh.consume(routerState.router.route("/posts/post1/photos/photo1"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route12ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/posts/post1/photos"));
+        bh.consume(routerState.router.route("/posts/post1/photos/photo1"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route13ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/posts/post1/photos/photo1"));
+        bh.consume(routerState.router.route("/events/popular"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route13ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/posts/post1/photos/photo1"));
+        bh.consume(routerState.router.route("/events/popular"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route14ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/events/popular"));
+        bh.consume(routerState.router.route("/events/event1"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route14ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/events/popular"));
+        bh.consume(routerState.router.route("/events/event1"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route15ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/events/event1"));
+        bh.consume(routerState.router.route("/events/event1/partecipants"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route15ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/events/event1"));
+        bh.consume(routerState.router.route("/events/event1/partecipants"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route16ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/events/event1/partecipants"));
+        bh.consume(routerState.router.route("/events/event1/invited"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route16ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/events/event1/partecipants"));
+        bh.consume(routerState.router.route("/events/event1/invited"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route17ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/events/event1/invited"));
+        bh.consume(routerState.router.route("/events/event1/feed"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route17ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/events/event1/invited"));
+        bh.consume(routerState.router.route("/events/event1/feed"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route18ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/events/event1/feed"));
+        bh.consume(routerState.router.route("/pages/popular"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route18ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/events/event1/feed"));
+        bh.consume(routerState.router.route("/pages/popular"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route19ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/pages/popular"));
+        bh.consume(routerState.router.route("/pages/page1"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route19ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/pages/popular"));
+        bh.consume(routerState.router.route("/pages/page1"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route20ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/pages/page1"));
+        bh.consume(routerState.router.route("/pages/page1/likes"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route20ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/pages/page1"));
+        bh.consume(routerState.router.route("/pages/page1/likes"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route21ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/pages/page1/likes"));
+        bh.consume(routerState.router.route("/pages/page1/events"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route21ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/pages/page1/likes"));
+        bh.consume(routerState.router.route("/pages/page1/events"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route22ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/pages/page1/events"));
+        bh.consume(routerState.router.route("/pages/page1/feed"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route22ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/pages/page1/events"));
+        bh.consume(routerState.router.route("/pages/page1/feed"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route23ECTreeRouter(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route("/pages/page1/feed"));
-    }
-
-    @Benchmark @BenchmarkMode(Mode.Throughput)
-    public void route23ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
-        for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-        bh.consume(routerState.router.route("/pages/page1/feed"));
-        for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
-    }
-    @Benchmark @BenchmarkMode(Mode.Throughput)
-    public void route24ECTreeRouter(RouterState routerState, Blackhole bh) {
         bh.consume(routerState.router.route("/pages/page1/feed/post1"));
     }
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
-    public void route24ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
+    public void route23ECTreeRouterWithLoad(RouterState routerState, Blackhole bh) {
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
         bh.consume(routerState.router.route("/pages/page1/feed/post1"));
         for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));

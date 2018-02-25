@@ -7,7 +7,8 @@ public class ECConstantNode extends ECBaseNode {
 
     String path;
 
-    public ECConstantNode(String path) {
+    public ECConstantNode(String path, boolean canStopHere) {
+        super(canStopHere);
         this.path = path;
     }
 

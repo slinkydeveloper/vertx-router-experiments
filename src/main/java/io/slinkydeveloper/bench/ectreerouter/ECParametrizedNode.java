@@ -7,7 +7,8 @@ public class ECParametrizedNode extends ECBaseNode {
 
     String parameterName;
 
-    public ECParametrizedNode(String path) {
+    public ECParametrizedNode(String path, boolean canStopHere) {
+        super(canStopHere);
         this.parameterName = path.substring(2); // /:paramName
     }
 
@@ -19,7 +20,7 @@ public class ECParametrizedNode extends ECBaseNode {
         pathChunk = pathChunk.substring(1); // Remove /
         int indexOf = pathChunk.indexOf("/");
         if (indexOf == -1)
-            return true;
+            return canStopHere;
         else
             return goDeep(pathChunk.substring(indexOf));
     }

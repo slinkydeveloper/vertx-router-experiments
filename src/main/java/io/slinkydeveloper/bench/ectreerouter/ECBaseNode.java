@@ -12,8 +12,10 @@ import java.util.Optional;
  */
 public abstract class ECBaseNode implements Route, Comparable {
     MutableList<ECBaseNode> childs;
+    boolean canStopHere; // Very very hacky
 
-    public ECBaseNode() {
+    public ECBaseNode(boolean canStopHere) {
+        this.canStopHere = canStopHere;
         childs = new FastList<>();
         childs = childs.asSynchronized();
     }
@@ -31,7 +33,7 @@ public abstract class ECBaseNode implements Route, Comparable {
                     return true;
             return false;
         } else
-            return true;
+            return canStopHere;
     }
 
     @Override
