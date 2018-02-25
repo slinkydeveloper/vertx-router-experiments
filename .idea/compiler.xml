@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Annotation profile for JMH benchmark sample: Java" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processor name="io.slinkydeveloper.bench.annotations.RouterBenchmarkImpl" />
+        <module name="vertx-router-experiments" />
+        <module name="vertx-routing-experiments-annotations" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="tree-list-routing-java-bench" target="1.8" />
+      <module name="vertx-router-experiments" target="1.8" />
+      <module name="vertx-routing-experiments-annotations" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
