@@ -124,11 +124,6 @@ THE POSSIBILITY OF SUCH DAMAGE.
                     <compilerVersion>${javac.target}</compilerVersion>
                     <source>${javac.target}</source>
                     <target>${javac.target}</target>
-                    <annotationProcessors>
-                        <annotationProcessor>
-                            io.slinkydeveloper.bench.annotations.RouterBenchmarkImpl
-                        </annotationProcessor>
-                    </annotationProcessors>
                 </configuration>
             </plugin>
             <plugin>

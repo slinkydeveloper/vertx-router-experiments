@@ -16,6 +16,7 @@ The method Router.initializeForBench() should initialize the router for this rou
 
 ```
 /feed
+/users/popular
 /users/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})
 /users/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})/events
 /users/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})/likes

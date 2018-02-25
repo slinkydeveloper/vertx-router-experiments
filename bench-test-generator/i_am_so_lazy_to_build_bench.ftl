@@ -40,10 +40,10 @@ public class ${val.routerType}Benchmark {
 
     @Benchmark @BenchmarkMode(Mode.Throughput) @Measurement(iterations = 100)
     public void routingRandomRoutes(RouterState routerState, Blackhole bh) {
-        bh.consume(routerState.router.route(routers.randomPath));
+        bh.consume(routerState.router.route(routerState.randomPath));
     }
 
-    <#list val.routes as i>
+    <#list val.paths as i>
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route${i?counter}${val.routerType}(RouterState routerState, Blackhole bh) {
         bh.consume(routerState.router.route("${i}"));
@@ -51,9 +51,9 @@ public class ${val.routerType}Benchmark {
 
     @Benchmark @BenchmarkMode(Mode.Throughput)
     public void route${i?counter}${val.routerType}WithLoad(RouterState routerState, Blackhole bh) {
-        for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routers.randomPath));
+        for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
         bh.consume(routerState.router.route("${i}"));
-        for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routers.randomPath));
+        for (int i = 0; i < 5; i++) bh.consume(routerState.router.route(routerState.randomPath));
     }
     </#list>
 

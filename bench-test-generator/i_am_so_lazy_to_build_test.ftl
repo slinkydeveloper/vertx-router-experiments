@@ -3,8 +3,6 @@ package io.slinkydeveloper.bench;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -14,11 +12,10 @@ public class ${val.routerType}Test {
 
     Router router = new ${val.routerType}().initializeForBench();
 
-<#list val.routes as i>
+<#list val.paths as i>
     @Test
     public void testPath${i?counter}() {
-        Optional<String> result = router.route("${i}");
-        assertTrue(result.isPresent());
+        assertTrue(router.route("${i}"));
     }
 
 </#list>
