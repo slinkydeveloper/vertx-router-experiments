@@ -4,6 +4,9 @@ import io.slinkydeveloper.bench.ectreerouter.ECBaseNode;
 import io.slinkydeveloper.bench.ectreerouter.ECConstantNode;
 import io.slinkydeveloper.bench.ectreerouter.ECParametrizedNode;
 import io.slinkydeveloper.bench.ectreerouter.ECRegexNode;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.regex.Pattern;
 
 /**
  * @author Francesco Guardiani @slinkydeveloper
@@ -16,6 +19,21 @@ public class ECTreeRouter implements Router {
 
     public boolean route(String route) {
         return this.root.goDeep(route);
+    }
+
+    @Override
+    public void addRegexRoute(Pattern p) {
+        throw new IllegalStateException("Method not implemented");
+    }
+
+    @Override
+    public void addConstantRoute(String s) {
+        throw new IllegalStateException("Method not implemented");
+    }
+
+    @Override
+    public void addParametrizedRoute(String s) {
+        throw new IllegalStateException("Method not implemented");
     }
 
     public void setRoot(ECBaseNode root) {

@@ -1,6 +1,5 @@
 package io.slinkydeveloper.bench;
 
-import java.util.Optional;
 import java.util.regex.Pattern;
 
 /**
@@ -14,41 +13,58 @@ public interface Router {
      * This method should manage only regex routes
      * @param p
      */
-    default void addRoute(Pattern p) {}
+    void addRegexRoute(Pattern p);
 
     /**
-     * This method should manage constant and parametrized routes
+     * This method should manage constant routes
      * @param s
      */
-    default void addRoute(String s) {}
+    void addConstantRoute(String s);
+
+    /**
+     * This method should manage parametrized routes
+     * @param s
+     */
+    void addParametrizedRoute(String s);
+
+    /**
+     * This method should manage parametrized and constant routes
+     * @param s
+     */
+    default void addRoute(String s) {
+        if (s.contains(":"))
+            addParametrizedRoute(s);
+        else
+            addConstantRoute(s);
+    }
 
     default Router initializeForBench() {
-        addRoute("/feed");
-        addRoute("/users/popular");
-        addRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})"));
-        addRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/events"));
-        addRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/likes"));
-        addRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/pages"));
-        addRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/friends"));
-        addRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/feed"));
+        addConstantRoute("/feed");
+        addConstantRoute("/users/popular");
+        addRegexRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})"));
+        addRegexRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/events"));
+        addRegexRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/likes"));
+        addRegexRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/pages"));
+        addRegexRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/friends"));
+        addRegexRoute(Pattern.compile("\\/users\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/feed"));
 
-        addRoute("/posts/popular");
-        addRoute("/posts/:post_id/tagged");
-        addRoute("/posts/:post_id/photos");
-        addRoute("/posts/:post_id/photos/:photo_id");
+        addConstantRoute("/posts/popular");
+        addParametrizedRoute("/posts/:post_id/tagged");
+        addParametrizedRoute("/posts/:post_id/photos");
+        addParametrizedRoute("/posts/:post_id/photos/:photo_id");
 
-        addRoute("/events/popular");
-        addRoute("/events/:event_id");
-        addRoute("/events/:event_id/partecipants");
-        addRoute("/events/:event_id/invited");
-        addRoute("/events/:event_id/feed");
+        addConstantRoute("/events/popular");
+        addParametrizedRoute("/events/:event_id");
+        addParametrizedRoute("/events/:event_id/partecipants");
+        addParametrizedRoute("/events/:event_id/invited");
+        addParametrizedRoute("/events/:event_id/feed");
 
-        addRoute("/pages/popular");
-        addRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})"));
-        addRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/likes"));
-        addRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/events"));
-        addRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/feed"));
-        addRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/feed\\/(?<postid>[a-zA-Z][a-zA-Z0-9]{3,20})"));
+        addConstantRoute("/pages/popular");
+        addRegexRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})"));
+        addRegexRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/likes"));
+        addRegexRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/events"));
+        addRegexRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/feed"));
+        addRegexRoute(Pattern.compile("\\/pages\\/(?<id>[a-zA-Z][a-zA-Z0-9]{3,20})\\/feed\\/(?<postid>[a-zA-Z][a-zA-Z0-9]{3,20})"));
 
         return this;
     }

@@ -20,15 +20,17 @@ public class SkipListRouter implements Router {
     }
 
     @Override
-    public void addRoute(String r) {
-        if (r.contains(":"))
-            routes.add(new SkipListParametrizedRoute(r));
-        else
-            routes.add(new SkipListConstantRoute(r));
+    public void addConstantRoute(String s) {
+        routes.add(new SkipListConstantRoute(s));
     }
 
     @Override
-    public void addRoute(Pattern r) {
+    public void addParametrizedRoute(String s) {
+        routes.add(new SkipListParametrizedRoute(s));
+    }
+
+    @Override
+    public void addRegexRoute(Pattern r) {
         routes.add(new SkipListRegexRoute(r));
     }
 
