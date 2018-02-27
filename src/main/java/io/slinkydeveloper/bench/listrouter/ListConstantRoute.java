@@ -1,22 +1,15 @@
-package io.slinkydeveloper.bench.skiplistrouter;
+package io.slinkydeveloper.bench.listrouter;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * @author Francesco Guardiani @slinkydeveloper
  */
-public class SkipListConstantRoute extends SkipListBaseRoute {
+public class ListConstantRoute extends ListBaseRoute {
 
     String path;
 
-    public SkipListConstantRoute(String path) {
+    public ListConstantRoute(String path) {
         this.path = path;
     }
 

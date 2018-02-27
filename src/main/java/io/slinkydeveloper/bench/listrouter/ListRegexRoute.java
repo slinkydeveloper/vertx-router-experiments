@@ -1,6 +1,5 @@
-package io.slinkydeveloper.bench.skiplistrouter;
+package io.slinkydeveloper.bench.listrouter;
 
-import io.slinkydeveloper.bench.Route;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Matcher;
@@ -9,15 +8,15 @@ import java.util.regex.Pattern;
 /**
  * @author Francesco Guardiani @slinkydeveloper
  */
-public class SkipListRegexRoute extends SkipListBaseRoute {
+public class ListRegexRoute extends ListBaseRoute {
 
     Pattern regex;
 
-    public SkipListRegexRoute(String regex) {
+    public ListRegexRoute(String regex) {
         this.regex = Pattern.compile(regex);
     }
 
-    public SkipListRegexRoute(Pattern regex) {
+    public ListRegexRoute(Pattern regex) {
         this.regex = regex;
     }
 

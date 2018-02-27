@@ -1,9 +1,9 @@
 package io.slinkydeveloper.bench;
 
-import io.slinkydeveloper.bench.skiplistrouter.SkipListBaseRoute;
-import io.slinkydeveloper.bench.skiplistrouter.SkipListConstantRoute;
-import io.slinkydeveloper.bench.skiplistrouter.SkipListParametrizedRoute;
-import io.slinkydeveloper.bench.skiplistrouter.SkipListRegexRoute;
+import io.slinkydeveloper.bench.listrouter.ListBaseRoute;
+import io.slinkydeveloper.bench.listrouter.ListConstantRoute;
+import io.slinkydeveloper.bench.listrouter.ListParametrizedRoute;
+import io.slinkydeveloper.bench.listrouter.ListRegexRoute;
 
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.regex.Pattern;
@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  */
 public class SkipListRouter implements Router {
 
-    ConcurrentSkipListSet<SkipListBaseRoute> routes;
+    ConcurrentSkipListSet<ListBaseRoute> routes;
 
     public SkipListRouter() {
         routes = new ConcurrentSkipListSet<>();
@@ -21,21 +21,21 @@ public class SkipListRouter implements Router {
 
     @Override
     public void addConstantRoute(String s) {
-        routes.add(new SkipListConstantRoute(s));
+        routes.add(new ListConstantRoute(s));
     }
 
     @Override
     public void addParametrizedRoute(String s) {
-        routes.add(new SkipListParametrizedRoute(s));
+        routes.add(new ListParametrizedRoute(s));
     }
 
     @Override
     public void addRegexRoute(Pattern r) {
-        routes.add(new SkipListRegexRoute(r));
+        routes.add(new ListRegexRoute(r));
     }
 
     public boolean route(String path) {
-        for (SkipListBaseRoute route : routes) {
+        for (ListBaseRoute route : routes) {
             if (route.matches(path))
                 return true;
         }

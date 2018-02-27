@@ -1,6 +1,5 @@
-package io.slinkydeveloper.bench.skiplistrouter;
+package io.slinkydeveloper.bench.listrouter;
 
-import joptsimple.internal.Strings;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -10,14 +9,14 @@ import java.util.regex.Pattern;
 /**
  * @author Francesco Guardiani @slinkydeveloper
  */
-public class SkipListParametrizedRoute extends SkipListBaseRoute {
+public class ListParametrizedRoute extends ListBaseRoute {
 
     String startingPath;
     List<String> splittedPath;
 
     final static String SPLITTER_REGEX = Pattern.quote("/");
 
-    public SkipListParametrizedRoute(String path) {
+    public ListParametrizedRoute(String path) {
         this.startingPath = path;
         this.splittedPath = Arrays.asList(path.split(SPLITTER_REGEX));
     }
