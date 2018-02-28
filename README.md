@@ -1,18 +1,23 @@
 # Vertx-router-experiments
 Code for benchmarking experiments about a Router implementation
 
+## Run
+To run the benchmarks and generate graphs, just use
+
+```bash
+./run.sh
+```
+
 ## Create a new Router implementation
-There are some scripts that helps you to test and benchmark a new Router implementation:
+To test your implementation, simply subclass the `BaseRouterTest` and implement the method `getRouter()`
+
+Because of JMH limitations, we can't build a base class with a base test, so you should build every bench manually. To avoid writing boilerplate, use the provided script to generate everything automatically:
 
 ```bash
 ./generate_benchmark.sh SimpleClassName
 ```
 
-```bash
-./generate_test.sh SimpleClassName
-```
-
-The method Router.initializeForBench() should initialize the router for this routes:
+The method `Router.initializeForBench()` should initialize the router for this routes:
 
 ```
 /feed
@@ -42,7 +47,7 @@ The method Router.initializeForBench() should initialize the router for this rou
 
 The routes params can be only alphanumeric of size from 3 to 20 chars, and they don't finish with `/`
 
-Note that implementing `addRoute(String)` and `addRoute(Pattern)` the default implementation of `Router.initializeForBench()` will automatically fill the `Router`
+Note that implementing `addRoute(String)` and `addRoute(Pattern)` you don't have to implement `Router.initializeForBench()`, because the default implementation will automatically fill the `Router`
 
 ## Generate graphs
 
