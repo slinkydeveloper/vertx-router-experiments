@@ -103,8 +103,6 @@ public class BenchmarkStuff {
         probabilitiesForRandom.add(22);
         probabilitiesForRandom.add(22);
 
-        probabilitiesForRandom.add(23);
-
         Collections.shuffle(probabilitiesForRandom);
     }
 

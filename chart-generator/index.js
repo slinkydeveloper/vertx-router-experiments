@@ -3,7 +3,7 @@ const ChartjsNode = require('chartjs-node');
 const _ = require('lodash');
 const fs = require('fs');
 
-let social_data = JSON.parse(fs.readFileSync('./social.json', 'utf8'));
+let social_data = JSON.parse(fs.readFileSync('./output.json', 'utf8'));
 let social_tests = JSON.parse(fs.readFileSync('../src/main/resources/paths.json', 'utf8'));
 social_tests = social_tests.paths;
 
@@ -112,7 +112,7 @@ function buildChartOptionsForAverage(data, datasets) {
     for (let set of datasets) {
         obj.data.labels.push(set.label);
         obj.data.datasets[0].backgroundColor.push(set.color);
-        obj.data.datasets[0].data.push(data.find((el) => el.benchmark == set.name).primaryMetric.score);
+        obj.data.datasets[0].data.push(data.find((el) => el.benchmark === set.name).primaryMetric.score);
     }
     return obj;
 }
@@ -129,95 +129,72 @@ function doChart(length, height, chartOptions, imageName) {
     });
 }
 
-//doChart(400, 800, buildChartOptionsForAverage(complex_data, "io.slinkydeveloper.bench.ComplexRegexBenchmark.treeRouting", "io.slinkydeveloper.bench.ComplexRegexBenchmark.skipListRouting", "Tree", "List"), "complex_average.png");
 doChart(400, 800, buildChartOptionsForAverage(social_data,
     [
         {
-            "label": "Tree",
-            "name": "io.slinkydeveloper.bench.SocialNetworkBenchmark.treeRouting",
+            "label": "ECTree",
+            "name": "io.slinkydeveloper.bench.ECTreeRouterBenchmark.routingRandomRoutes",
             "color": "rgba(255, 0, 0, 1)"
         },
         {
-            "label": "List",
-            "name": "io.slinkydeveloper.bench.SocialNetworkBenchmark.skipListRouting",
+            "label": "ECList",
+            "name": "io.slinkydeveloper.bench.ECListRouterBenchmark.routingRandomRoutes",
             "color": "rgba(0, 0, 255, 1)"
         },
         {
-            "label": "ECTree",
-            "name": "io.slinkydeveloper.bench.SocialNetworkBenchmark.ecTreeRouting",
+            "label": "SkipList",
+            "name": "io.slinkydeveloper.bench.SkipListRouterBenchmark.routingRandomRoutes",
             "color": "rgba(0, 255, 0, 1)"
-        },
-        {
-            "label": "ImmutableECTree",
-            "name": "io.slinkydeveloper.bench.SocialNetworkBenchmark.immutableECTreeRouting",
-            "color": "rgba(255, 255, 0, 1)"
         }
-    ]), "out/social_average.png");
+    ]), "../out/social_average.png");
 
 const basicGroups = [
     {
-        label: "Tree",
-        regexp: /.*route([0-9]{1,2})TreeRouting$/g,
+        label: "ECTree",
+        regexp: /.*route([0-9]{1,2})ECTreeRouter$/g,
         mainColor: "rgba(255, 0, 0, 1)",
         transparentColor: "rgba(255, 0, 0, 0.3)"
     },
     {
-        label: "ECTree",
-        regexp: /.*route([0-9]{1,2})ECTreeRouting$/g,
+        label: "ECList",
+        regexp: /.*route([0-9]{1,2})ECListRouter$/g,
         mainColor: "rgba(0, 255, 0, 1)",
         transparentColor: "rgba(0, 255, 0, 0.3)"
     },
     {
-        label: "ImmutableECTree",
-        regexp: /.*route([0-9]{1,2})immutableECTreeRouting$/g,
+        label: "SkipList",
+        regexp: /.*route([0-9]{1,2})SkipListRouter$/g,
         mainColor: "rgba(255, 255, 0, 1)",
         transparentColor: "rgba(255, 255, 0, 0.3)"
-    },
-    {
-        label: "List",
-        regexp: /.*route([0-9]{1,2})SkipListRouting$/g,
-        mainColor: "rgba(0, 0, 255, 1)",
-        transparentColor: "rgba(0, 0, 255, 0.3)"
     }
 ];
 
 const withLoadGroups = [
     {
-        label: "Tree with load",
-        regexp: /.*route([0-9]{1,2})TreeWithLoad$/g,
+        label: "ECTree with load",
+        regexp: /.*route([0-9]{1,2})ECTreeRouterWithLoad$/g,
         mainColor: "rgba(255, 150, 0, 1)",
         transparentColor: "rgba(255, 150, 0, 0.3)",
         scale: 11
     },
     {
-        label: "ECTree with load",
-        regexp: /.*route([0-9]{1,2})ECTreeWithLoad$/g,
+        label: "ECList with load",
+        regexp: /.*route([0-9]{1,2})ECListRouterWithLoad$/g,
         mainColor: "rgba(150, 255, 0, 1)",
         transparentColor: "rgba(150, 255, 0, 0.3)",
         scale: 11
     },
     {
-        label: "ImmutableECTree with load",
-        regexp: /.*route([0-9]{1,2})immutableECTreeWithLoad$/g,
+        label: "SkipList with load",
+        regexp: /.*route([0-9]{1,2})SkipListRouterWithLoad$/g,
         mainColor: "rgba(255, 255, 150, 1)",
         transparentColor: "rgba(255, 255, 150, 0.3)",
-        scale: 11
-    },
-    {
-        label: "List with load",
-        regexp: /.*route([0-9]{1,2})ListWithLoad$/g,
-        mainColor: "rgba(0, 150, 255, 1)",
-        transparentColor: "rgba(0, 150, 255, 0.3)",
         scale: 11
     }
 ];
 
 const allGroups = basicGroups.concat(withLoadGroups);
 
-//doChart(1200, 600, buildChartOptionsForTestsWithGroups(complex_data, complex_tests, basicGroups), "out/basic_complex.png");
-//doChart(1200, 600, buildChartOptionsForTestsWithGroups(complex_data, complex_tests, withLoadGroups), "out/with_load_complex.png");
-//doChart(1200, 600, buildChartOptionsForTestsWithGroups(complex_data, complex_tests, allGroups), "out/complex_complete.png");
-
-doChart(2000, 600, buildChartOptionsForTestsWithGroups(social_data, social_tests, basicGroups), "out/basic_social.png");
-doChart(2000, 600, buildChartOptionsForTestsWithGroups(social_data, social_tests, withLoadGroups), "out/with_load_social.png");
-doChart(2000, 600, buildChartOptionsForTestsWithGroups(social_data, social_tests, allGroups), "out/social_complete.png");
+doChart(2000, 600, buildChartOptionsForTestsWithGroups(social_data, social_tests, basicGroups), "../out/basic_social.png");
+doChart(2000, 600, buildChartOptionsForTestsWithGroups(social_data, social_tests, withLoadGroups), "../out/with_load_social.png");
+doChart(2000, 600, buildChartOptionsForTestsWithGroups(social_data, social_tests, allGroups), "../out/social_complete.png");
